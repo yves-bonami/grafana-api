@@ -7,15 +7,15 @@ use grafana_api::{
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     tracing_subscriber::fmt::init();
 
-    let client = Client::new("http://localhost:3000").set_auth_method(AuthMethod::Basic {
-        username: "admin".into(),
-        password: "admin".into(),
-    });
+    let token = dotenv::var("GRAFANA_API_TOKEN").unwrap_or_default();
+
+    let client =
+        Client::new("https://yvesbonami.grafana.net").set_auth_method(AuthMethod::Bearer(token));
 
     let request = ListApiKeysRequest::default();
     let keys = request.send(&client).await?;
 
-    keys.iter().for_each(|s| println!("{:?}", s));
+    keys.iter().for_each(|s| println!("{:#?}", s));
 
     Ok(())
 }

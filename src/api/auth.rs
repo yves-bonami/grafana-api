@@ -32,7 +32,7 @@ impl Endpoint for ListApiKeysRequest {
 }
 
 impl ListApiKeysRequest {
-    pub async fn send(&self, client: &Client) -> Result<Vec<ApiKey>, Box<dyn std::error::Error>> {
+    pub async fn send(&self, client: &Client) -> Result<Vec<ApiKey>, crate::error::Error> {
         let res = client.send_request::<Vec<ApiKey>>(self).await?;
         Ok(res)
     }

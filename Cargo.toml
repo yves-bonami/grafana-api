@@ -8,11 +8,13 @@ edition = "2021"
 [dependencies]
 chrono = { version = "0.4.19", features = ["serde"] }
 hyper = { version = "0.14.18", features = ["full"] }
+hyper-tls = "0.5.0"
 serde = { version = "1.0.137", features = ["derive"] }
 serde_json = "1.0.81"
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1.35"
 
 [dev-dependencies]
+dotenv = "0.15.0"
 mockito = "0.31.0"
 tracing-subscriber = "0.3.11"
